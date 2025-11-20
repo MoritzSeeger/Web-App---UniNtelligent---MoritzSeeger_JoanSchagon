@@ -4,4 +4,4 @@ Lösung: „ProfMatch“ bietet Studierenden die Möglichkeit, Dozenten anonym n
 
 Zielgruppe:
 
-Hauptsächlich Studierende an Hochschulen und Universitäten, primäre aber an der HWR
+Hauptsächlich Studierende an Hochschulen und Universitäten, primär aber an der HWR
