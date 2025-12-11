@@ -5,3 +5,5 @@ Lösung: „ProfMatch“ bietet Studierenden die Möglichkeit, Dozenten anonym n
 Zielgruppe:
 
 Hauptsächlich Studierende an Hochschulen und Universitäten, primär aber an der HWR
+
+https://moritzseeger.github.io/Web-App---UniNtelligent---MoritzSeeger_JoanSchagon/
