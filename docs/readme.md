@@ -2,8 +2,9 @@ Problem: Studierende wissen oft nicht, wie ein Dozent oder ein Kurs tatsächlich
 
 Lösung: „ProfMatch“ bietet Studierenden die Möglichkeit, Dozenten anonym nach bestimmten, klar definierten Kategorien zu bewerten (z. B. Kursstruktur, Interaktivität, Kursstil, Bewertungssystem, Arbeitsaufwand, Fairness). Jeder Dozent erhält ein Profil mit Basisinfos (Name, Fachbereich, angebotene Kurse) und "Bewertungen" zu den jeweiligen Kursen. So können Studierende vor der Kurswahl nachlesen, wie andere den Kurs erlebt haben – und besser entscheiden, welcher Kurs oder Dozent zu ihnen passt.
 
-Zielgruppe:
-
-Hauptsächlich Studierende an Hochschulen und Universitäten, primär aber an der HWR
+Zielgruppe:Hauptsächlich Studierende an Hochschulen und Universitäten, primär aber an der HWR
 
 https://moritzseeger.github.io/Web-App---UniNtelligent---MoritzSeeger_JoanSchagon/
+Preliminary Data-Model: <img width="1281" height="764" alt="grafik" src="https://github.com/user-attachments/assets/a17e89e2-cbd9-45b3-88ab-fc71c726c5e7" />
+
+
