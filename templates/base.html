@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Meine WebApp{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+<body>
+    <nav>
+        <a href="/">Home</a> | 
+        <a href="/kurse">Kurse</a> | 
+        <a href="/dozenten">Dozenten suchen</a> | 
+        <a href="/login">Login</a> | 
+        <a href="/register">Registrieren</a>
+    </nav>
+    <hr>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <hr>
+    <footer>
+        <p>&copy; UniNtelligent </p>
+    </footer>
+</body>
+</html>
