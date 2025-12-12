@@ -6,5 +6,4 @@ Zielgruppe:Hauptsächlich Studierende an Hochschulen und Universitäten, primär
 
 https://moritzseeger.github.io/Web-App---UniNtelligent---MoritzSeeger_JoanSchagon/
 Preliminary Data-Model: <img width="1281" height="764" alt="grafik" src="https://github.com/user-attachments/assets/a17e89e2-cbd9-45b3-88ab-fc71c726c5e7" />
-
-
+12/12 JS - Professor/User/Kurse/Bachelor Modelle erstellt + Klassen für diese + Matching Klasse & DB Workflow gestartet.
