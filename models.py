@@ -8,7 +8,7 @@ class User(db.User, UserMixin):
     tablename = "student_users"
     id = db.Column(db.Integer, primary_key=True)
     
-class Professor(): # Die Professoren Klasse
+class Professor: # Die Professoren Klasse
     def __innit__(
         self,
         id_professor: int,
@@ -41,5 +41,39 @@ class Professor(): # Die Professoren Klasse
     def full_name (self):
         return (self.title + " " + self.name + " "+ self.surname)
 
-  
-    
+
+class Degree:
+    def __innit__(
+        self,      
+        id_degree: int,
+        name: str,
+        semester_amount: int,
+        module1_id: int,
+        module2_id: int,
+        module3_id: int,
+        module4_id: int,
+        module5_id: int
+        #alle weiteren Module nachtragen
+        
+    ):
+        self.id_degree = id_degree,
+        self.name = name
+        self.semester_amount = semester_amount
+        self.module1_id = module1_id
+        self.module2_id = module2_id
+        self.module3_id = module3_id
+        self.module4_id = module4_id
+        self.module5_id = module5_id
+        #alle weiteren Moule nachtragen
+
+class Course():
+    def __innit__(
+            self,
+            id_course: str,
+            name: str,
+            difficulty: int #Die komplexität/Aufwand des Kurses#
+
+    ):
+        self.id_course = id_course
+        self.name = name
+        self.difficulty = difficulty
