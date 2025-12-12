@@ -8,11 +8,12 @@ class User(db.User, UserMixin):
     tablename = "student_users"
     id = db.Column(db.Integer, primary_key=True)
     
-class Professor(db.Professor):
-    def attribute(
+class Professor(): # Die Professoren Klasse
+    def __innit__(
         self,
         id_professor: int,
         image_path: str,
+        title: str,
         surname: str,
         name: str,
         description: str, # Kurze Bio des Professors
@@ -21,11 +22,13 @@ class Professor(db.Professor):
         character: int, # 1= MEGA Seriös 10= extremer Witzbold
         digital: int,# 1= Kreide an der Tafel 10= kein Papier erlaubt
         ai_usage: int, # 1= KI ist der Teufel 10= KI ist die christliche Neugeburt
-        theses_boolean: bool # Betreut Bachelor/Master?
+        theses_is_supervisor: bool # Betreut Bachelor/Master?
 
     ):
+    
         self.id_professor = id_professor
         self.image_path = image_path
+        self.title = title
         self.surname = surname
         self.name = name
         self.description = description
@@ -34,7 +37,9 @@ class Professor(db.Professor):
         self.character = character
         self.digital = digital
         self.ai_usage = ai_usage
-        self.theses_boolean = theses_boolean
+        self.theses_is_supervisor = theses_is_supervisor
     def full_name (self):
-        return (self.name + " "+ self.surname)
+        return (self.title + " " + self.name + " "+ self.surname)
+
+  
     
