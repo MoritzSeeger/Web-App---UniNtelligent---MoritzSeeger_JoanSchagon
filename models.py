@@ -1,79 +1,65 @@
-import db
 from flask_login import UserMixin
-from sqlalchemy import func
+from flask_sqlalchemy import SQLAlchemy
 
 
-class User(db.User, UserMixin):
+db = SQLAlchemy()
 
-    tablename = "student_users"
+degreeCourses = db.Table( #Mit hilfe von ChatGPT erstellt
+    "degree_courses",
+    db.Column("degree_id", db.Integer, db.ForeignKey("degrees.id_degree"), primary_key=True),
+    db.Column("course_id", db.Integer, db.ForeignKey("courses.id_course"), primary_key=True), 
+)
+
+class User(db.Model, UserMixin):
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
-    
-class Professor: # Die Professoren Klasse
-    def __innit__(
-        self,
-        id_professor: int,
-        image_path: str,
-        title: str,
-        surname: str,
-        name: str,
-        description: str, # Kurze Bio des Professors
-        teaching_style: int, # Hier wird die Art des Lehrstils definiert 1-10: 1= reiner Frantaluntericht 10= Komplett Gruppenorientiert und interaktiv
-        selfstudy: int, # 1= Kompletter Präsenzuntericht 10= 100% self study
-        character: int, # 1= MEGA Seriös 10= extremer Witzbold
-        digital: int,# 1= Kreide an der Tafel 10= kein Papier erlaubt
-        ai_usage: int, # 1= KI ist der Teufel 10= KI ist die christliche Neugeburt
-        theses_is_supervisor: bool # Betreut Bachelor/Master?
+    username = db.Column(db.String(25), unique = True, nullable = False)
+    password = db.Column(db.String(255), nullable = False)
+    role = db.Column(db.String(25), nullable = False, default = "Student")
 
-    ):
-    
-        self.id_professor = id_professor
-        self.image_path = image_path
-        self.title = title
-        self.surname = surname
-        self.name = name
-        self.description = description
-        self.teaching_style = teaching_style
-        self.selfstudy = selfstudy
-        self.character = character
-        self.digital = digital
-        self.ai_usage = ai_usage
-        self.theses_is_supervisor = theses_is_supervisor
-    def full_name (self):
-        return (self.title + " " + self.name + " "+ self.surname)
+class Professor(db.Model):
+    __tablename__ = "professors"
+    id = db.Column(db.Integer, primary_key=True)
+    image_path = db.Column(db.String(255))
+    title = db.Column(db.String(50))
+    surname = db.Column(db.String(80), nullable=False)
+    name = db.Column(db.String(80), nullable=False)
+    description = db.Column(db.Text)
+
+    teaching_style = db.Column(db.Integer, nullable=False)
+    selfstudy = db.Column(db.Integer, nullable=False)
+    character = db.Column(db.Integer, nullable=False)
+    digital = db.Column(db.Integer, nullable=False)
+    ai_usage = db.Column(db.Integer, nullable=False)
+    theses_is_supervisor = db.Column(db.Boolean, nullable=False, default=False)
+
+class Degree(db.Model):
+    __tablename__= "degrees"
+    id_degree = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    semester_amount = db.Column(db.Integer, nullable=False)
+    corny_quote = db.Column(db.String(255), nullable=True)
+
+    courses = db.relationship("Course", secondary=degreeCourses, back_populates="degrees")
+
+class Course(db.Model):
+    __tablename__= "courses"
+    course_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    difficulty = db.Column(db.Integer, nullable=True)
+
+    degrees = db.relationship("Degree", secondary=degreeCourses, back_populates="courses")
 
 
-class Degree:
-    def __innit__(
-        self,      
-        id_degree: int,
-        name: str,
-        semester_amount: int,
-        module1_id: int,
-        module2_id: int,
-        module3_id: int,
-        module4_id: int,
-        module5_id: int
-        #alle weiteren Module nachtragen
-        
-    ):
-        self.id_degree = id_degree,
-        self.name = name
-        self.semester_amount = semester_amount
-        self.module1_id = module1_id
-        self.module2_id = module2_id
-        self.module3_id = module3_id
-        self.module4_id = module4_id
-        self.module5_id = module5_id
-        #alle weiteren Moule nachtragen
+class User_Attributes(db.Model):
+    __tablename__= "userAttributes"
+    id_user = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key=True)
+    teaching_style = db.Column(db.Integer, nullable = False)
+    selfstudy = db.Column(db.Integer, nullable=False)
+    character = db.Column(db.Integer, nullable=False)
+    digital = db.Column(db.Integer, nullable=False)
+    ai_usage = db.Column(db.Integer, nullable=False)
+    user = db.relationship("User", backref=db.backref("attributes", uselist=False)) 
 
-class Course():
-    def __innit__(
-            self,
-            id_course: str,
-            name: str,
-            difficulty: int #Die komplexität/Aufwand des Kurses#
 
-    ):
-        self.id_course = id_course
-        self.name = name
-        self.difficulty = difficulty
+
