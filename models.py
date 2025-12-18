@@ -78,5 +78,5 @@ class User_Attributes(db.Model):
         db.CheckConstraint("ai_usage BETWEEN 1 AND 10", name="chk_user_ai_usage"),
     )
 
-
+    
 
