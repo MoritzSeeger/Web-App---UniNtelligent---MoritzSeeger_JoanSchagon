@@ -8,16 +8,16 @@ nav_order: 0
 >
 > You may delete this `attention` box.
 
-# [Project Name]
+# UniNtelligent
 
-UniNtelligent
+Project
 
 ## Team members
 
 ### Moritz Seeger
 
 About
-: male
+: 
 
 Matr.-Nr.
 : 77209191407
