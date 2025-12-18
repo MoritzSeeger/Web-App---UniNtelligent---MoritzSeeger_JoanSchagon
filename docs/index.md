@@ -10,19 +10,19 @@ nav_order: 0
 
 # [Project Name]
 
-[Project description]
+UniNtelligent
 
 ## Team members
 
-### [Jane Dane]
+### Moritz Seeger
 
 About
-: Some info about Jane
+: male
 
 Matr.-Nr.
-: 1234567
+: 77209191407
 
-### [Joe Doe]
+### Joan Tjark Schagon
 
 About
 : Some info about Joe
