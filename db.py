@@ -1,12 +1,67 @@
-from flask import Flask
-from models import db  
+import click
+import os
+import sqlite3
+from flask import current_app, g
 
-app = Flask(__name__) 
+def get_db_con(pragma_foreign_keys=True):
+    if 'db_con' not in g:
+        g.db_con = sqlite3.connect(
+            current_app.config['DATABASE'],
+            detect_types=sqlite3.PARSE_DECLTYPES
+        )
+        g.db_con.row_factory = sqlite3.Row
+        if pragma_foreign_keys:
+            g.db_con.execute('PRAGMA foreign_keys = ON;')
+    return g.db_con
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"   #mit hilfe von CHATGPT 
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+def close_db_con(e=None):
+    db_con = g.pop('db_con', None)
+    if db_con is not None:
+        db_con.close()
 
-db.init_app(app)
 
-with app.app_context():
-    db.create_all()  
+@click.command('init-db')
+def init_db():
+    try:
+        os.makedirs(current_app.instance_path)
+    except OSError:
+        pass
+    db_con = get_db_con()
+    with current_app.open_resource('sql/drop_tables.sql') as f:
+        db_con.executescript(f.read().decode('utf8'))
+    with current_app.open_resource('sql/test.sql') as f:
+        db_con.executescript(f.read().decode('utf8'))
+    click.echo('Database has been initialized.')
+
+def insert_sample():
+    db_con = get_db_con()
+    with current_app.open_resource('sql/insert_sample.sql') as f:
+        db_con.executescript(f.read().decode('utf8'))
+
+
+# CHekt Benutzername + Passwort
+def get_user(username, password):
+    db_con = get_db_con()
+    return db_con.execute(
+        'SELECT * FROM users WHERE username = ? AND password = ?',
+        (username, password)
+    ).fetchone()
+
+
+# Checkt ob Benutzername schon existiert
+def get_user_by_username(username):
+    db_con = get_db_con()
+    return db_con.execute(
+        'SELECT * FROM users WHERE username = ?',
+        (username,)
+    ).fetchone()
+
+
+# Added neuen Bnutzer
+def insert_user(username, password):
+    db_con = get_db_con()
+    db_con.execute(
+        'INSERT INTO users (username, password) VALUES (?, ?)',
+        (username, password)
+    )
+    db_con.commit()

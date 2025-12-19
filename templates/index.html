@@ -1,12 +1,29 @@
 {% extends 'base.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Startseite{% endblock %}
 
 {% block content %}
-    <h2>Login</h2>
-    <form>
-        <label>Email: <input type="email"></label><br><br>
-        <label>Passwort: <input type="password"></label><br><br>
-        <button type="submit">Einloggen</button>
-    </form>
+<section class="hero">
+    <div class="hero-content">
+        <h1>Willkommen an der HWR Berlin</h1>
+        <p>Entdecke Kurse, Dozenten und lerne den Stil der Kurse kennen – mündlich, schriftlich, projektorientiert oder selbstlernend.</p>
+        <a href="{{ url_for('kurs_uebersicht') }}" class="btn-hero">Jetzt Kurse entdecken</a>
+        <a href="{{ url_for('dozenten_suche') }}" class="btn-hero-outline">Dozenten entdecken</a>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature">
+        <h2>Kurse durchsuchen</h2>
+        <p>Finde den passenden Kurs für dein Semester und sieh dir alle Infos zum Kursstil an.</p>
+    </div>
+    <div class="feature">
+        <h2>Dozenten kennenlernen</h2>
+        <p>Sieh dir Profile der Dozenten an, ihre Schwerpunkte und Lehrmethoden.</p>
+    </div>
+    <div class="feature">
+        <h2>Profil verwalten</h2>
+        <p>Behalte deine Kurse, Favoriten und persönlichen Daten im Blick.</p>
+    </div>
+</section>
 {% endblock %}

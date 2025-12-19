@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #4facfe, #c471ed, #f64f59);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box {
+    background: white;
+    width: 380px;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.login-box h1 {
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 5px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    outline: none;
+    font-size: 15px;
+}
+
+.input-group input:focus {
+    border-bottom-color: #c471ed;
+}
+
+.forgot {
+    text-align: right;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.forgot a {
+    text-decoration: none;
+    color: #888;
+}
+
+.login-btn {
+    width: 100%;
+    border: none;
+    padding: 12px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    background: linear-gradient(90deg, #43e97b, #38f9d7, #c471ed);
+}
+
+.login-btn:hover {
+    opacity: 0.9;
+}
+
+.divider {
+    margin: 30px 0 15px;
+    font-size: 13px;
+    color: #999;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.social {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.facebook { background: #3b5998; }
+.twitter { background: #1da1f2; }
+.google { background: #db4437; }
+
+.signup {
+    font-size: 13px;
+}
+
+.signup a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #c471ed;
+}
+
+.error {
+    color: red;
+    margin-bottom: 15px;
+}

@@ -2,27 +2,59 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Meine WebApp{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-<body>
-    <nav>
-        <a href="/">Home</a> | 
-        <a href="/kurse">Kurse</a> | 
-        <a href="/dozenten">Dozenten suchen</a> | 
-        <a href="/login">Login</a> | 
-        <a href="/register">Registrieren</a>
-    </nav>
-    <hr>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}UniNtelligent{% endblock %}</title>
 
-    <main>
+    <!-- CSS einbinden -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- ==============================
+         Header / Navigation
+         ============================== -->
+    <header class="header">
+        <nav class="navbar container-box">
+            <a href="{{ url_for('index') }}" class="logo">UniNtelligent</a>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('kurs_uebersicht') }}">Kurse</a></li>
+
+                <li><a href="{{ url_for('dozenten_suche') }}">Dozenten</a></li>
+                {% if session.get('user_id') %}
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Registrieren</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ==============================
+         Hauptinhalt
+         ============================== -->
+    <main class="main-content container-box">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="success">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
         {% block content %}
+        <!-- Hier wird der Seiteninhalt eingefügt -->
         {% endblock %}
     </main>
 
-    <hr>
-    <footer>
-        <p>&copy; UniNtelligent </p>
+    <!-- ==============================
+         Footer
+         ============================== -->
+    <footer class="footer container-box">
+        <p>&copy; {{ current_year }} UniNtelligent. Alle Rechte vorbehalten.</p>
     </footer>
+
 </body>
 </html>

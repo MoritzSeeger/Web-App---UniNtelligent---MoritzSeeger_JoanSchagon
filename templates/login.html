@@ -1,12 +1,50 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}" />
+</head>
+<body>
 
-{% block title %}Login{% endblock %}
+    <div class="login-box">
+        <h1>Login</h1>
 
-{% block content %}
-    <h2>Login</h2>
-    <form>
-        <label>Email: <input type="email"></label><br><br>
-        <label>Passwort: <input type="password"></label><br><br>
-        <button type="submit">Einloggen</button>
-    </form>
-{% endblock %}
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="post">
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Type your username" required />
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Type your password" required />
+            </div>
+
+            <div class="forgot">
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button class="login-btn" type="submit">LOGIN</button>
+        </form>
+
+        <div class="divider">Or Sign Up Using</div>
+
+        <div class="socials">
+            <div class="social facebook">f</div>
+            <div class="social twitter">t</div>
+            <div class="social google">G</div>
+        </div>
+
+        <div class="signup">
+            Or Sign Up Using<br />
+            <a href="{{ url_for('register') }}">SIGN UP</a>
+        </div>
+    </div>
+
+</body>
+</html>
