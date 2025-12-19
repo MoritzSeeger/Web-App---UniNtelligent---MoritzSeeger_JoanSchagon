@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block title %}Dozenten Profil{% endblock %}
+
+{% block content %}
+    <h2>Profil von Dozent Nr. {{ id }}</h2>
+    <a href="/dozenten">Zurück zur Suche</a>
+{% endblock %}

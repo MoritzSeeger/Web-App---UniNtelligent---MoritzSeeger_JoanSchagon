@@ -1,0 +1,8 @@
+python
+html
+css
+sqlite
+venv Umgebung
+flask
+flask-sqlalchemy
+
