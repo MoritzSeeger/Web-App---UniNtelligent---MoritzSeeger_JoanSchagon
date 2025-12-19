@@ -5,7 +5,7 @@ Lösung: „ProfMatch“ bietet Studierenden die Möglichkeit, Dozenten anonym n
 Zielgruppe:Hauptsächlich Studierende an Hochschulen und Universitäten, primär aber an der HWR
 
 https://moritzseeger.github.io/Web-App---UniNtelligent---MoritzSeeger_JoanSchagon/
-Preliminary Data-Model: <img width="1183" height="735" alt="grafik" src="https://github.com/user-attachments/assets/dc7252d4-4711-4e0b-8f8e-ae4a87733aff" />
+
 
 12/12 JS - Professor/User/Kurse/Bachelor Modelle erstellt + Klassen für diese + Matching Klasse & DB Workflow gestartet.
 17/12 JS - Created prliminary final Models in SQAlchemy format: Professor/User/User_Attributes/Course/Degree/degreeCourses
