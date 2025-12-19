@@ -1,5 +1,5 @@
 READ ME-
-Welcome to our repository: ProfMatch
+Welcome to our repository: UniNtelligent
 Our goal is to make university course selecton a great experience :)
 
 You will find all associated documentation under /docs
