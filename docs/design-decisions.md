@@ -16,7 +16,7 @@ nav_order: 3
 {: toc }
 </details>
 
-## 01: [Title]
+## 01: Design Decisions
 
 ### Meta
 
@@ -24,11 +24,11 @@ Status
 : **Work in progress** - Decided - Obsolete
 
 Updated
-: DD-MMM-YYYY
+: 19.12.2025
 
 ### Problem statement
 
-[Describe the problem to be solved or the goal to be achieved. Include relevant context information.]
+Problem: Studierende wissen oft nicht, wie ein Dozent oder ein Kurs tatsächlich ist, bevor sie ihn belegen. Manche Kurse sind sehr theorielastig, andere interaktiv; manche Dozenten bevorzugen Hausarbeiten, andere Präsentationen oder Klausuren. Diese Unterschiede beeinflussen stark, wie gut ein Kurs zu den eigenen Lernvorlieben passt – aber solche Informationen sind bisher schwer zugänglich.
 
 ### Decision
 
