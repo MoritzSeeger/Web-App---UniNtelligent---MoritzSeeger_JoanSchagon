@@ -9,4 +9,4 @@ Preliminary Data-Model: <img width="1183" height="735" alt="grafik" src="https:/
 
 12/12 JS - Professor/User/Kurse/Bachelor Modelle erstellt + Klassen für diese + Matching Klasse & DB Workflow gestartet.
 17/12 JS - Created prliminary final Models in SQAlchemy format: Professor/User/User_Attributes/Course/Degree/degreeCourses
-  Created database
+  and SQLite: Created database for the data model
