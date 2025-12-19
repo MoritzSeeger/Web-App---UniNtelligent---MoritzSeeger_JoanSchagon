@@ -47,18 +47,3 @@ def get_user(username, password):   # prüft ob benutzer mit passw existiert
         (username, password)
     ).fetchone()        
 
-@click.command('insert-db')
-def insert_db():
-    """Führt test.sql aus und fügt Daten in die Datenbank ein."""
-    try:
-        os.makedirs(current_app.instance_path, exist_ok=True)
-    except OSError:
-        pass
-
-    db_con = get_db_con()
-
-    # Nur Daten einfügen, Tabellen nicht löschen
-    with current_app.open_resource('sql/insert_sample.sql') as f:
-        db_con.executescript(f.read().decode('utf8'))
-
-    click.echo('Testdaten wurden in die Datenbank eingefügt.')
