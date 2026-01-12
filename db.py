@@ -29,7 +29,7 @@ def init_db():
     db_con = get_db_con()
     with current_app.open_resource('sql/drop_tables.sql') as f:
         db_con.executescript(f.read().decode('utf8'))
-    with current_app.open_resource('sql/test.sql') as f:
+    with current_app.open_resource('sql/create_table') as f:
         db_con.executescript(f.read().decode('utf8'))
     click.echo('Database has been initialized.')
 
