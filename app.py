@@ -89,16 +89,50 @@ def logout():
     return redirect(url_for('login'))
 
 
+# In app.py
+
 @app.route('/dozenten')
 @login_required
 def dozenten_suche():
-    return render_template('dozenten_suche.html')
+    db_con = db.get_db_con()
+    
+    # 1. Wir schauen, ob oben in der URL ein Suchbegriff steht (z.B. ?q=Müller)
+    search_query = request.args.get('q')
 
+    if search_query:
+        # 2. WENN gesucht wurde: Suche in Vorname ODER Nachname
+        # Die %-Zeichen bedeuten: "Egal was davor oder dahinter steht"
+        sql = "SELECT * FROM professors WHERE surname LIKE ? OR name LIKE ?"
+        term = f"%{search_query}%" # Macht aus "Müller" -> "%Müller%"
+        professors = db_con.execute(sql, (term, term)).fetchall()
+    else:
+        # 3. WENN NICHT gesucht wurde: Zeige einfach alle an
+        professors = db_con.execute('SELECT * FROM professors').fetchall()
+    
+    # Wir geben den Suchbegriff (search_query) wieder mit zurück, 
+    # damit er im Eingabefeld stehen bleibt.
+    return render_template('dozenten_suche.html', professors=professors, search_query=search_query)
+
+
+# In app.py
 
 @app.route('/dozenten/<int:id>')
 @login_required
 def dozenten_profil(id):
-    return render_template('dozenten_profil.html')
+    db_con = db.get_db_con()
+    
+    # 1. Den Professor mit genau dieser ID suchen
+    professor = db_con.execute(
+        'SELECT * FROM professors WHERE id = ?', 
+        (id,)
+    ).fetchone()
+
+    # 2. Sicherheits-Check: Falls die ID nicht existiert (z.B. User tippt ID 999)
+    if professor is None:
+        return "Dozent nicht gefunden", 404
+
+    # 3. WICHTIG: Das Ergebnis als 'prof' an das HTML-Template schicken
+    return render_template('dozenten_profil.html', prof=professor)
 
 
 @app.route('/kurse')

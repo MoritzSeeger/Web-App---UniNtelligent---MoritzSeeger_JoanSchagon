@@ -1,8 +1,46 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dozenten Übersicht</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .prof-box { border: 1px solid #ddd; margin-bottom: 15px; padding: 15px; border-radius: 8px; background-color: #f9f9f9; }
+        .search-box { background-color: #eee; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 10px; }
+        input { padding: 8px; width: 100%; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 8px 15px; cursor: pointer; background-color: #333; color: white; border: none; border-radius: 4px; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Unsere Dozenten</h1>
 
-{% block title %}Dozenten{% endblock %}
+    <div class="search-box">
+        <form action="{{ url_for('dozenten_suche') }}" method="get" style="display: flex; width: 100%; gap: 10px;">
+            <input type="text" name="q" placeholder="Namen suchen (z.B. Müller)..." value="{{ search_query or '' }}">
+            <button type="submit">Suchen</button>
+            <a href="{{ url_for('dozenten_suche') }}"><button type="button" style="background-color: #888;">Reset</button></a>
+        </form>
+    </div>
 
-{% block content %}
-    <h2>Dozenten finden</h2>
-    <p>Suche hier nach deinen Dozenten.</p>
-{% endblock %}
+    {% if professors %}
+        {% for prof in professors %}
+            <div class="prof-box">
+                <h2>{{ prof['title'] }} {{ prof['name'] }} {{ prof['surname'] }}</h2>
+                
+                <p><i>{{ prof['description'] }}</i></p>
+                
+                <div style="display: flex; gap: 20px;">
+                    <span>🎓 Teaching: <b>{{ prof['teaching_style'] }}/10</b></span>
+                    <span>💻 Digital: <b>{{ prof['digital'] }}/10</b></span>
+                </div>
+                <br>
+                <a href="{{ url_for('dozenten_profil', id=prof['id']) }}">➡️ Zum Profil</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Keine Dozenten gefunden.</p>
+    {% endif %}
+
+</body>
+</html>

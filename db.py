@@ -27,19 +27,22 @@ def init_db():
     except OSError:
         pass
     db_con = get_db_con()
-    with current_app.open_resource('sql/drop_tables.sql') as f:
+    
+    # Hier wird das Schema geladen (Tabelle erstellen)
+    # Stelle sicher, dass du die Datei 'schema.sql' im Ordner 'sql/' hast!
+    with current_app.open_resource('sql/create_schema_Table.sql') as f:
         db_con.executescript(f.read().decode('utf8'))
-    with current_app.open_resource('sql/create_table') as f:
-        db_con.executescript(f.read().decode('utf8'))
+        
     click.echo('Database has been initialized.')
 
 def insert_sample():
     db_con = get_db_con()
+    # HIER ANGEPASST: Dein Dateiname 'inster_sample.sql'
     with current_app.open_resource('sql/insert_sample.sql') as f:
         db_con.executescript(f.read().decode('utf8'))
 
 
-# CHekt Benutzername + Passwort
+# Checkt Benutzername + Passwort
 def get_user(username, password):
     db_con = get_db_con()
     return db_con.execute(
@@ -57,9 +60,10 @@ def get_user_by_username(username):
     ).fetchone()
 
 
-# Added neuen Bnutzer
+# Added neuen Benutzer
 def insert_user(username, password):
     db_con = get_db_con()
+    # Hier muss keine Role angegeben werden, da SQL automatisch 'Student' setzt
     db_con.execute(
         'INSERT INTO users (username, password) VALUES (?, ?)',
         (username, password)
