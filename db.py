@@ -28,8 +28,6 @@ def init_db():
         pass
     db_con = get_db_con()
     
-    # Hier wird das Schema geladen (Tabelle erstellen)
-    # Stelle sicher, dass du die Datei 'schema.sql' im Ordner 'sql/' hast!
     with current_app.open_resource('sql/create_schema_Table.sql') as f:
         db_con.executescript(f.read().decode('utf8'))
         
@@ -63,7 +61,7 @@ def get_user_by_username(username):
 # Added neuen Benutzer
 def insert_user(username, password):
     db_con = get_db_con()
-    # Hier muss keine Role angegeben werden, da SQL automatisch 'Student' setzt
+    # SQl setzt ROlle automatisch auf 'Student'
     db_con.execute(
         'INSERT INTO users (username, password) VALUES (?, ?)',
         (username, password)

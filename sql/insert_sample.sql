@@ -1,11 +1,9 @@
--- KORRIGIERTE DATEI
 INSERT INTO professors (id, title, surname, name, description, teaching_style, selfstudy, character, digital, ai_usage, theses_is_supervisor) 
 VALUES 
 (1, 'Prof. Dr.', 'Müller', 'Thomas', 'Liebt Python und KI.', 8, 4, 9, 10, 10, 1),
 (2, 'Dr.', 'Schmidt', 'Helga', 'Sehr genau, viel Theorie.', 2, 9, 4, 3, 1, 1),
 (3, 'M.Sc.', 'Jansen', 'Lars', 'Praxisnah aus der Wirtschaft.', 9, 2, 10, 8, 8, 0);
 
--- (Der Rest für Degrees und Courses bleibt gleich...)
 INSERT INTO degrees (id, name, semester_amount, corny_quote) 
 VALUES 
 (1, 'Wirtschaftsinformatik', 7, 'IT meets Business - und Kaffee.'),
