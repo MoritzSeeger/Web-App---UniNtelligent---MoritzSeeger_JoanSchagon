@@ -38,6 +38,7 @@ def insert_sample():
     # HIER ANGEPASST: Dein Dateiname 'inster_sample.sql'
     with current_app.open_resource('sql/insert_sample.sql') as f:
         db_con.executescript(f.read().decode('utf8'))
+        db_con.commit()
 
 
 # Checkt Benutzername + Passwort

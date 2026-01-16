@@ -5,4 +5,6 @@ sqlite
 venv Umgebung
 flask
 flask-sqlalchemy
+flask init-db  ( beim starten des Servers http://127.0.0.1:5000/insert/sample eingeben, um samples einzufügen, ansonsten Datenbank leer !)
+
 

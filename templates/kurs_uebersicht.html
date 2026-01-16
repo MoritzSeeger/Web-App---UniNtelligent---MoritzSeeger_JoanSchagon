@@ -3,15 +3,37 @@
 {% block title %}Kurse{% endblock %}
 
 {% block content %}
-    <h2>Unsere Kurse</h2>
-    <ul>
+<div style="max-width: 800px; margin: 0 auto;">
+    <h2>🎓 Unsere Kurse</h2>
+    
+    <ul style="list-style: none; padding: 0;">
         {% for kurs in kurse %}
-            <li>
-                <a href="/kurse/{{ kurs.id }}"><strong>{{ kurs.titel }}</strong></a>
-                - {{ kurs.beschreibung }}
+            <li style="border: 1px solid #ddd; margin-bottom: 10px; padding: 15px; border-radius: 8px; background-color: #fff;">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <a href="{{ url_for('kurs_profil', kurs_id=kurs['id']) }}" style="font-size: 1.2em; text-decoration: none; color: #007bff; font-weight: bold;">
+                        {{ kurs['name'] }}
+                    </a>
+                    <span style="background: #eee; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; color: #555;">
+                        {{ kurs['course_type'] }}
+                    </span>
+                </div>
+
+                <p style="margin: 5px 0 10px 0; color: #555;">
+                    {{ kurs['description'] }}
+                </p>
+
+                <div style="font-size: 0.9em; color: #666;">
+                   Difficulty: <b>{{ kurs['difficulty'] }}/10</b> • 
+                   Praxis: <b>{{ kurs['practice_orientation'] }}/10</b>
+                </div>
             </li>
         {% else %}
-            <li>Aktuell keine Kurse verfügbar.</li>
+            <li style="padding: 20px; text-align: center; color: #777;">
+                Aktuell keine Kurse in der Datenbank gefunden. 
+                <br>(Hast du /insert/sample ausgeführt?)
+            </li>
         {% endfor %}
     </ul>
+</div>
 {% endblock %}

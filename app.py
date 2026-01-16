@@ -38,9 +38,12 @@ def index():
 
 
 @app.route('/insert/sample')
-def run_insert_sample():
+def insert_sample_data():
+    # 1. Den Befehl ausführen
     db.insert_sample()
-    return 'Database flushed and populated with some sample data.'
+    
+    # 2. Erfolgsmeldung anzeigen
+    return "✅ Erfolg! Datenbank wurde befüllt."
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -99,12 +102,19 @@ def dozenten_suche():
     search_query = request.args.get('q')
 
     if search_query:
-        sql = "SELECT * FROM professors WHERE surname LIKE ? OR name LIKE ?"
-        term = f"%{search_query}%" # Macht aus "Müller" -> "%Müller%"
+        # Wir sortieren erst nach Nachname, und bei gleichen Nachnamen nach Vorname
+        sql = """
+            SELECT * FROM professors 
+            WHERE surname LIKE ? OR name LIKE ? 
+            ORDER BY surname ASC, name ASC
+        """
+        term = f"%{search_query}%"
         professors = db_con.execute(sql, (term, term)).fetchall()
     else:
+        # Hier stand vorher nur 'SELECT * FROM professors'
+        sql = "SELECT * FROM professors ORDER BY surname ASC, name ASC"
+        professors = db_con.execute(sql).fetchall()
     
-        professors = db_con.execute('SELECT * FROM professors').fetchall()
     return render_template('dozenten_suche.html', professors=professors, search_query=search_query)
 
 
@@ -126,18 +136,57 @@ def dozenten_profil(id):
 
 
 @app.route('/kurse')
-@login_required
 def kurs_uebersicht():
-    return render_template('kurs_uebersicht.html')
+    db_con = db.get_db_con()
+    
+    # Wir holen alle Kurse aus der Datenbank
+    sql = "SELECT * FROM courses ORDER BY name ASC"
+    kurse_data = db_con.execute(sql).fetchall()
+    
+    # Wir übergeben die Daten an das Template
+    return render_template('kurs_uebersicht.html', kurse=kurse_data)
 
 
-@app.route('/kurse/<int:id>')
-@login_required
-def kurs_profil(id):
-    return render_template('kurs_profil.html')
+@app.route('/kurse/<int:kurs_id>')
+def kurs_profil(kurs_id):
+    db_con = db.get_db_con()
+    kurs = db_con.execute("SELECT * FROM courses WHERE id = ?", (kurs_id,)).fetchone()
+    
+    if kurs is None:
+        return "Kurs nicht gefunden", 404
+        
+    return f"<h1>Profil für Kurs: {kurs['name']}</h1><p>{kurs['description']}</p>" 
 
 
+import os
+import sqlite3
 
+@app.route('/debug-db')   # Debug mithilfe von KI erstellt
+def debug_db():
+    # 1. Wo sucht Flask die Datenbank?
+    db_path = os.path.join(app.instance_path, 'todos.sqlite')
+    
+    status = f"📂 Datenbank-Pfad ist: {db_path}<br>"
+    
+    if os.path.exists(db_path):
+        status += "✅ Datei existiert.<br>"
+        # Größe prüfen
+        size = os.path.getsize(db_path)
+        status += f"⚖️ Dateigröße: {size} Bytes (0 Bytes = Leer!)<br>"
+    else:
+        status += "❌ Datei existiert NICHT! (Pfad-Problem)<br>"
+
+    # 2. Wir versuchen manuell zu zählen
+    try:
+        con = sqlite3.connect(db_path)
+        cursor = con.cursor()
+        count = cursor.execute("SELECT count(*) FROM professors").fetchone()[0]
+        status += f"📊 Anzahl Dozenten in DB: <b>{count}</b>"
+        con.close()
+    except Exception as e:
+        status += f"❌ Fehler beim Lesen: {e}"
+
+    return status
 # App Startüunktion
 
 if __name__ == '__main__':
