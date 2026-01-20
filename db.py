@@ -60,11 +60,11 @@ def get_user_by_username(username):
 
 
 # Added neuen Benutzer
-def insert_user(username, password):
+def insert_user(username, password, teaching_style, self_Study, character, digital, ai_usage):
     db_con = get_db_con()
     # SQl setzt ROlle automatisch auf 'Student'
     db_con.execute(
-        'INSERT INTO users (username, password) VALUES (?, ?)',
-        (username, password)
+        'INSERT INTO users (username, password, teaching_style, self_study, character, digital, ai_usage) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        (username, password, teaching_style, self_Study, character, digital, ai_usage)
     )
     db_con.commit()

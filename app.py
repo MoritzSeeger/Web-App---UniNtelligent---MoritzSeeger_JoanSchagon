@@ -71,12 +71,17 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        teaching_style = int(request.form["teaching_style"])
+        self_study     = int(request.form["self_study"])
+        character      = int(request.form["character"])
+        digital        = int(request.form["digital"])
+        ai_usage       = int(request.form["ai_usage"])
 
         existing_user = db.get_user_by_username(username)
         if existing_user is not None:
             error = "Benutzername existiert bereits."
         else:
-            db.insert_user(username, password)
+            db.insert_user(username, password, teaching_style, self_study, character, digital, ai_usage)
 
             user = db.get_user(username, password)
             session['user_id'] = user['id']
@@ -191,3 +196,7 @@ def debug_db():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+@app.route('/traits')
+def save_traits():
+    db_path = os.path.join()
