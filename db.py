@@ -63,7 +63,7 @@ def get_user_by_username(username):
 
 
 # Added neuen Benutzer
-def insert_user(username, password, teaching_style, self_study, character_style, digital, ai_usage):
+def insert_user(username, password, teaching_style, self_study, character_style, digital, ai_usage): 
     db_con = get_db_con()
     # SQl setzt ROlle automatisch auf 'Student'
     db_con.execute(
