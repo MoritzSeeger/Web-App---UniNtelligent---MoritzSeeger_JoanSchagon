@@ -1,7 +1,8 @@
 import pandas as pd
+import numpy as np
 import db
 
-MATCH_COLUMNS = [         #[2] ChatGPT
+MATCH_COLUMNS = [         #[2] Mit hilfe von ChatGPT. Es was unklar das die benötigt wurde
     "teaching_style",
     "self_study",
     "character_style",
@@ -10,17 +11,14 @@ MATCH_COLUMNS = [         #[2] ChatGPT
 ]
 
 
-def get_user_df(db_path):
-
-    db_con = db.get_db_con()
+def get_user_df(user_id):
+    con = db.get_db_con()
     query = """
-    SELECT teaching_style, selfstudy AS self_study, character_Style AS character_style, digital, ai_usage
+    SELECT teaching_style, self_study, character_style, digital, ai_usage
     FROM users
     WHERE id = ?
     """
-    df = pd.read_sql_query(query, db_con, params=(id,))
-
-    return df.iloc[0]   # Help from ChatGPT
+    return pd.read_sql_query(query, con, params=(user_id,))
 
 
 
@@ -44,12 +42,14 @@ def get_professors_df():
         points = [10, 8, 4, 2, 0, -2, -4, -6, -8, -10]
         return pd.Series(np.select(conditions, choices, default=-10), index=diff.index)     
 
+#[2] This is the adjusted Logic given by ChatGPT 
 
+POINTS = np.array([10, 8, 4, 2, 0, -2, -4, -6, -8, -10])
 
-def diff_to_points(diff):
-    bins = [-1,0,1,2,3,4,5,6,7,8,9,100]
-    scores = [10,8,4,2,0,-2,-4,-6,-8,-10,-10]
-    return pd.cut(diff, bins=bins, labels=scores).astype(int)           #[2] This is the adjusted Logic given by ChatGPT 
+def diff_to_points(diff: pd.Series) -> pd.Series:       
+    d = diff.to_numpy(dtype=int)
+    d = np.clip(d, 0, 9)               #
+    return pd.Series(POINTS[d], index=diff.index)      
 
 def compute_matching_scores(user, prof_df):
     # Compute absolute differences per column

@@ -2,6 +2,7 @@ import os
 from functools import wraps
 from flask import Flask, render_template, redirect, url_for, session, request, flash
 import db
+from match_logic import compute_matching_scores, get_professors_df, get_user_df
 
 app = Flask(__name__)
 
@@ -35,6 +36,25 @@ def login_required(view):
 @login_required
 def index():
     return render_template('index.html')
+
+@app.route("/matches")
+@login_required
+def matches():
+    user_id = session["user_id"]
+
+    user_df = get_user_df(user_id)
+    print("DEBUG user_df:", user_df.shape)
+    
+
+    user = user_df.iloc[0]
+
+    prof_df = get_professors_df()
+    
+    ranked = compute_matching_scores(user, prof_df)
+
+    matches_list = ranked.to_dict(orient="records")
+    return render_template("matches.html", matches=matches_list)
+
 
 
 @app.route('/insert/sample')
@@ -197,6 +217,3 @@ def debug_db():
 if __name__ == '__main__':
     app.run(debug=True)
 
-@app.route('/traits')
-def save_traits():
-    db_path = os.path.join()
