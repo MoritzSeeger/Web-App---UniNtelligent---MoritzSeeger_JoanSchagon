@@ -1,13 +1,14 @@
-title 	parent 	nav_order
-Architecture
-	
-Technical Docs
-	
-2
+---
+title: Matching-Logic
+parent: Technical Docs
+nav_order: 2
+---
 
-{: .label } [Jane Dane]
+{: .label }
+[Jane Dane]
 
 {: .no_toc }
+
 
 # Matching Algorithm
 
