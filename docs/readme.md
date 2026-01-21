@@ -2,7 +2,10 @@ READ ME-
 Welcome to our repository: UniNtelligent
 Our goal is to make university course selecton a great experience :)
 
-You will find all associated documentation under /docs
+OUR MAIN BRANCH IS CURRENTLY OUTDATED! PLEASE VIEW THE login/feature FOR CURRENT WORKING PROGRESS
+
+You will find all associated documentation under /docs OR in our GitPages: https://moritzseeger.github.io/Web-App---UniNtelligent---MoritzSeeger_JoanSchagon/
+
 
 
 ------
