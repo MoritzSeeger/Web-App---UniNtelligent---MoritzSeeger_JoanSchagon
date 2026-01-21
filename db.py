@@ -22,6 +22,8 @@ def close_db_con(e=None):
 
 @click.command('init-db')
 def init_db():
+    db_path = current_app.config['DATABASE']
+
     try:
         os.makedirs(current_app.instance_path)
     except OSError:
@@ -31,6 +33,7 @@ def init_db():
     with current_app.open_resource('sql/create_schema_Table.sql') as f:
         db_con.executescript(f.read().decode('utf8'))
         
+         
     click.echo('Database has been initialized.')
 
 def insert_sample():
@@ -60,11 +63,11 @@ def get_user_by_username(username):
 
 
 # Added neuen Benutzer
-def insert_user(username, password, teaching_style, self_Study, character, digital, ai_usage):
+def insert_user(username, password, teaching_style, self_study, character_style, digital, ai_usage):
     db_con = get_db_con()
     # SQl setzt ROlle automatisch auf 'Student'
     db_con.execute(
-        'INSERT INTO users (username, password, teaching_style, self_study, character, digital, ai_usage) VALUES (?, ?, ?, ?, ?, ?, ?)',
-        (username, password, teaching_style, self_Study, character, digital, ai_usage)
+        'INSERT INTO users (username, password, teaching_style, self_study, character_style, digital, ai_usage) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        (username, password, teaching_style, self_study, character_style, digital, ai_usage)
     )
     db_con.commit()

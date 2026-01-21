@@ -71,9 +71,9 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        teaching_style = int(request.form["teaching_style"])
+        teaching_style = int(request.form["teaching_style"]) 
         self_study     = int(request.form["self_study"])
-        character      = int(request.form["character"])
+        character_style= int(request.form["character_style"])
         digital        = int(request.form["digital"])
         ai_usage       = int(request.form["ai_usage"])
 
@@ -81,7 +81,7 @@ def register():
         if existing_user is not None:
             error = "Benutzername existiert bereits."
         else:
-            db.insert_user(username, password, teaching_style, self_study, character, digital, ai_usage)
+            db.insert_user(username, password, teaching_style, self_study, character_style, digital, ai_usage)
 
             user = db.get_user(username, password)
             session['user_id'] = user['id']

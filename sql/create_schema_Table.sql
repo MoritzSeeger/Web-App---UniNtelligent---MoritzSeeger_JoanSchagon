@@ -10,27 +10,24 @@ CREATE TABLE users (
     username TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     teaching_style INTEGER NOT NULL CHECK(teaching_style BETWEEN 1 AND 10),
-    selfstudy INTEGER NOT NULL CHECK(selfstudy BETWEEN 1 AND 10),
-    character INTEGER NOT NULL CHECK(character BETWEEN 1 AND 10),
+    self_study INTEGER NOT NULL CHECK(self_study BETWEEN 1 AND 10),
+    character_style INTEGER NOT NULL CHECK(character_style BETWEEN 1 AND 10),
     digital INTEGER NOT NULL CHECK(digital BETWEEN 1 AND 10),
     ai_usage INTEGER NOT NULL CHECK(ai_usage BETWEEN 1 AND 10),
     role TEXT NOT NULL DEFAULT 'Student'
 );
 
 CREATE TABLE professors (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
     image_path TEXT,
     title TEXT,
     surname TEXT NOT NULL,
     name TEXT NOT NULL,
     description TEXT,
-    
     teaching_style INTEGER NOT NULL CHECK(teaching_style BETWEEN 1 AND 10),
-    selfstudy INTEGER NOT NULL CHECK(selfstudy BETWEEN 1 AND 10),
-    character INTEGER NOT NULL CHECK(character BETWEEN 1 AND 10),
+    self_study INTEGER NOT NULL CHECK(self_study BETWEEN 1 AND 10),
+    character_style INTEGER NOT NULL CHECK(character_style BETWEEN 1 AND 10),
     digital INTEGER NOT NULL CHECK(digital BETWEEN 1 AND 10),
-    ai_usage INTEGER NOT NULL CHECK(ai_usage BETWEEN 1 AND 10),
-    
+    ai_usage INTEGER NOT NULL CHECK(ai_usage BETWEEN 1 AND 10),    
     theses_is_supervisor BOOLEAN NOT NULL DEFAULT 0  -- VLt entfernen ( nicht relevant )
 );
 

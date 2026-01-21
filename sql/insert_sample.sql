@@ -1,5 +1,5 @@
 -- Erst die Dozenten (IDs 1 bis 109)
-INSERT INTO professors (id, title, surname, name, description, teaching_style, selfstudy, character, digital, ai_usage, theses_is_supervisor) VALUES
+INSERT INTO professors (id, title, surname, name, description, teaching_style, self_study, character_style, digital, ai_usage, theses_is_supervisor) VALUES
 (1, '', 'Aguilar Ramirez', 'Mariana', 'Lehrkraft im Bereich Business English', 8, 4, 9, 6, 5, 0),
 (2, 'Dr.', 'Akcay', 'Ümit', 'Gastdozent FB 1', 7, 5, 7, 8, 6, 0),
 (3, '', 'Allan', 'Wiktoria', 'Lehrkraft und Koordination Business English', 9, 3, 8, 7, 4, 0),
