@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}UniNtelligent{% endblock %} | HWR Berlin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header class="hwr-header">
+        <div class="nav-container">
+            
+            <a href="/" class="hwr-logo">
+                <span class="logo-box">UniNtelligent</span>
+                <span class="logo-text">HWR-Berlin</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+    <li><a href="{{ url_for('kurs_uebersicht') }}">Kurse</a></li>
+    <li><a href="{{ url_for('dozenten_suche') }}">Dozenten</a></li>
+
+    {% if g.user %}
+        <li>
+            <span style="color: white; font-weight: bold; margin-right: 10px;">
+                👤 {{ g.user['username'] }}
+            </span>
+        </li>
+        <li>
+            <a href="{{ url_for('logout') }}" class="btn-nav" style="background: transparent; border-color: white; color: white !important;">
+                Logout
+            </a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{{ url_for('login') }}" class="btn-nav">Login</a>
+        </li>
+    {% endif %}
+</ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content" style="max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center;">
+            <p>&copy; 2026 UniNtelligent Projekt - Hochschule für Wirtschaft und Recht Berlin</p>
+        </div>
+    </footer>
+
+</body>
+</html>

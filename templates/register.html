@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Registrierung</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}" />
+</head>
+<body>
+
+    <div class="login-box">
+        <h1>Registrierung</h1>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="post">
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Wähle deinen Benutzernamen" required />
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Wähle dein Passwort" required />
+            </div>
+
+            <h1>Wählen Sie ihren bevorzugten Learn-Attribute aus</h1>
+
+            <div class="slider-container">
+                
+                <div class="slider-row">
+                    <h3> Lehrstil: 1 = Frontal 10 = Interaktiv </h3>
+                <input type="range" id="slider1" name="teaching_style" min="1" max="10" step="1" value="1">
+                <span class="slider-value" id="value1">1</span>
+                </div>
+
+                <div class="slider-row">
+                    <h3> Selbst-Studium: 1 = Voll Präsenz 10 = Voll Asynchron </h3>
+                <input type="range" id="slider2" name="self_study" min="1" max="10" step="1" value="1">
+                <span class="slider-value" id="value2">1</span>
+                </div>
+
+                <div class="slider-row">
+                    <h3> Charakter: 1 = Ultra Seriös 10 = Witzbold </h3>
+                <input type="range" id="slider3" name="character_style" min="1" max="10" step="1" value="1">
+                <span class="slider-value" id="value3">1</span>
+                </div>
+
+                <div class="slider-row">
+                    <h3> Digital: 1 = Kreide & Papier 10 = Laptop ist notwendig </h3>
+                <input type="range" id="slider4" name="digital" min="1" max="10" step="1" value="1">
+                <span class="slider-value" id="value4">1</span>
+                </div>
+
+                <div class="slider-row">
+                    <h3> KI: 1 = Total Verboten 10 = Ohne KI kein bestehen </h3>
+                <input type="range" id="slider5" name="ai_usage" min="1" max="10" step="1" value="1">
+                <span class="slider-value" id="value5">1</span>
+                </div>
+            </div>
+            <h3>  </h3>
+            <script>
+
+        for (let i = 1; i <= 5; i++) {                                  //Coded by ChatGPT [1]
+        const slider = document.getElementById(`slider${i}`);
+        const valueDisplay = document.getElementById(`value${i}`);
+
+        slider.addEventListener("input", () => {
+            valueDisplay.textContent = slider.value;
+        });
+        }
+    </script>
+
+
+
+            <button class="login-btn" type="submit">REGISTRIEREN</button>
+        </form>
+
+        <div class="divider">Oder hast du schon ein Konto?</div>
+
+        <div class="signup">
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kurs: {{ course['name'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <a href="{{ url_for('kurs_uebersicht') }}" class="back-btn">← Zurück zur Übersicht</a>
+
+    <h1>
+        {{ course['name'] }}
+        <span class="badge">{{ course['course_type'] }}</span>
+    </h1>
+
+    <p class="description">"{{ course['description'] }}"</p>
+
+    <div class="metric-box">
+        <strong>Schwierigkeit:</strong> {{ course['difficulty'] }}/10
+        <div class="bar-bg">
+            <div class="bar-fill" style="width: {{ course['difficulty'] * 10 }}%; background-color: #dc3545;"></div>
+        </div>
+    </div>
+
+    <div class="metric-box">
+        <strong>Praxisbezug:</strong> {{ course['practice_orientation'] }}/10
+        <div class="bar-bg">
+            <div class="bar-fill" style="width: {{ course['practice_orientation'] * 10 }}%; background-color: #28a745;"></div>
+        </div>
+    </div>
+
+    <div class="grid-section">
+        <div>
+            <h3>📚 Teil von Studiengängen:</h3>
+            <ul>
+                {% for degree in degrees %}
+                    <li>{{ degree['name'] }}</li>
+                {% else %}
+                    <li style="color: #999;">Keinem Studiengang zugeordnet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div>
+            <h3>👨‍🏫 Gelehrt von:</h3>
+            <ul>
+                {% for prof in profs %}
+                    <li>
+                        <a href="{{ url_for('dozenten_profil', id=prof['id']) }}" class="prof-link">
+                            {{ prof['title'] }} {{ prof['name'] }} {{ prof['surname'] }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li style="color: #999;">Aktuell keine Dozenten zugewiesen.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

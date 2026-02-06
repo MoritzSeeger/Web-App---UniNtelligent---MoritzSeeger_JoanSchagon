@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Kurse Übersicht{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    
+    <h1 class="page-header">🎓 Unsere Kurse</h1>
+
+    <div class="search-bar-container">
+        <form action="{{ url_for('kurs_uebersicht') }}" method="get" class="search-form">
+            <input type="text" name="q" class="search-input" 
+                   placeholder="Kurs suchen (z.B. Marketing, Recht)..." 
+                   value="{{ request.args.get('q', '') }}">
+            
+            <button type="submit" class="btn">Suchen</button>
+            
+            <a href="{{ url_for('kurs_uebersicht') }}" class="btn btn-gray">Reset</a>
+        </form>
+    </div>
+
+    <div class="results-list">
+        {% for kurs in kurse %}
+            <div class="feature list-card">
+                
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <h2 style="margin-top: 0; font-size: 1.4rem; color: var(--hwr-dark);">
+                        {{ kurs['name'] }}
+                    </h2>
+                    
+                    <span style="background: #eee; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; color: #555; font-weight: bold;">
+                        {{ kurs['course_type'] }}
+                    </span>
+                </div>
+
+                <p class="prof-description" style="margin-bottom: 20px;">
+                    {{ kurs['description'] }}
+                </p>
+
+                <div class="prof-stats">
+                    <span class="stat-highlight">
+                        🧠 Difficulty: {{ kurs['difficulty'] }}/10
+                    </span>
+                    <span class="stat-highlight">
+                        🛠 Praxis: {{ kurs['practice_orientation'] }}/10
+                    </span>
+                </div>
+
+                <a href="{{ url_for('kurs_profil', kurs_id=kurs['id']) }}" class="btn btn-small">
+                    Zum Kurs ➔
+                </a>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <h3>Keine Kurse gefunden.</h3>
+                <p>Probiere einen anderen Suchbegriff oder setze den Filter zurück.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Dozenten Übersicht{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    
+    <h1 class="page-header">Unsere Dozenten</h1>
+
+    <div class="search-bar-container">
+        <form action="{{ url_for('dozenten_suche') }}" method="get" class="search-form">
+            
+            <input type="text" name="q" class="search-input" 
+                   placeholder="Namen suchen (z.B. Müller)..." 
+                   value="{{ search_query or '' }}">
+            
+            <button type="submit" class="btn">Suchen</button>
+            
+            <a href="{{ url_for('dozenten_suche') }}" class="btn btn-gray">Reset</a>
+        </form>
+    </div>
+
+    {% if professors %}
+        <div class="results-list">
+            {% for prof in professors %}
+                <div class="feature list-card">
+                    <h2 class="prof-name">
+                        {{ prof['title'] }} {{ prof['name'] }} {{ prof['surname'] }}
+                    </h2>
+                    
+                    <p class="prof-description">"{{ prof['description'] }}"</p>
+                    
+                    <div class="prof-stats">
+                        <span class="stat-highlight">
+                            🎓 Teaching: {{ prof['teaching_style'] }}/10
+                        </span>
+                        <span class="stat-highlight">
+                            💻 Digital: {{ prof['digital'] }}/10
+                        </span>
+                    </div>
+
+                    <a href="{{ url_for('dozenten_profil', id=prof['id']) }}" class="btn btn-small">
+                        Zum Profil ➔
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <h3>Keine Dozenten gefunden.</h3>
+            <p>Versuche es mit einem anderen Suchbegriff.</p>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Professor Matches</title>
+</head>
+<body>
+
+    <h1>Top Professor Matches</h1>
+
+    {% if matches %}
+        <table border="1" cellpadding="6">
+            <tr>
+                <th>Name</th>
+                <th>Teaching Style</th>
+                <th>Self Study</th>
+                <th>Character</th>
+                <th>Digital</th>
+                <th>AI Usage</th>
+                <th>Match Score</th>
+            </tr>
+
+            {% for prof in matches %}
+            <tr>
+                <td>{{ prof.name }} {{ prof.surname }}</td>
+                <td>{{ prof.teaching_style }}</td>
+                <td>{{ prof.self_study }}</td>
+                <td>{{ prof.character_style }}</td>
+                <td>{{ prof.digital }}</td>
+                <td>{{ prof.ai_usage }}</td>
+                <td><strong>{{ prof.match_score }}</strong></td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No matches found.</p>
+    {% endif %}
+
+</body>
+</html>
