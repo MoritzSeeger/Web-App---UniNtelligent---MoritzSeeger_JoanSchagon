@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+
+# Backups
+*.bkp
+
+# Env
+.env
+node_modules/
+__pycache__/
