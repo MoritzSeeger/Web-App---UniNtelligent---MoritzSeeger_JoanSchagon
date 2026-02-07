@@ -19,27 +19,26 @@ nav_order: 4
 ## 01: [Title]
 
 ### Meta
-
-Status
-: **Work in progress** - Done - Obsolete
-
-Updated
-: DD-MMM-YYYY
+**Status**
+Done
+**Updated**
+19.12.2025
 
 ### Goal
-
-[Describe the goal of this evaluation, for example as a research question like: "How long does it take to register a new account and what is the drop-out rate?"]
+Das Ziel dieser Evaluation war es zu prüfen, wie effizient Studierende einen spezifischen Kurs (z. B. Statistik) finden und ob die bereitgestellten Kriterien ausreichen, um eine fundierte Entscheidung zwischen verschiedenen Dozenten (Dozent A, B oder C) zu treffen. Wir wollten wissen, ob der Weg zum Ziel "strukturiert und ohne Umwege" verläuft.
 
 ### Method
-
-[Describe how you proceed to achieve your evaluation goal. Be as specific as possible: others should be able to replicate your evaluation by following the description on this section.]
+Wir haben einen Usability-Test mit Kommilitonen der HWR Berlin durchgeführt. Den Testern wurde ein Laptop mit der laufenden Anwendung übergeben. 
+**Aufgabe:** "Du musst im nächsten Semester Statistik belegen. Nutze ProfMatch, um die verfügbaren Dozenten für diesen Kurs zu finden und entscheide dich basierend auf deinem Lernstil für einen der Dozenten."
+Während des Prozesses haben wir beobachtet, wie intuitiv die Navigation durch die Fachbereiche und Kurse wahrgenommen wurde.
 
 ### Results
-
-[Present the main results of your evaluation, for example: "On average, users need 3 min to register. The drop-out rate was 70%. Users that didn't complete provided the following reasons: ..."]
+* **Datenbank & Performance:** Die Datenbankanbindung funktionierte reibungslos. Die Kurse und zugehörigen Dozenten wurden korrekt und schnell geladen. 
+* **Navigation:** Die Testpersonen fanden den Kurs "Statistik" ohne größere Umwege, was zeigt, dass die Pfade logisch strukturiert sind.
+* **Design-Hürden:** Die größte Schwierigkeit lag im visuellen Design. Testpersonen brauchten teilweise einen Moment, um die neutralen Kriterien (Stil statt Note) richtig zu interpretieren. Ein rein neutrales Empfehlungssystem ohne die gewohnten "Sterne-Bewertungen" war für einige Nutzer anfangs ungewohnt.
 
 ### Implications
-
-[What did you learn from this evaluation and what will you change to improve? Example: "We aim to decrease the drop-out rate by not asking for a birth date. We will re-run this evaluation to measure the impact."]
-
+* **Neutralität stärken:** Da das Feedback zeigte, dass neutrale Empfehlungen schwerer zu greifen sind als Noten, haben wir die Beschreibungen der Kriterien im Frontend präzisiert.
+* **UI/UX Refinement:** Basierend auf der Rückmeldung zum Design haben wir das Custom CSS angepasst, um die Übersichtlichkeit der Dozenten-Profile zu verbessern und die Vergleichbarkeit der Kriterien optisch deutlicher hervorzuheben. 
+* **Skalierung:** Das Feedback bestätigt, dass das System für die HWR funktioniert; für eine Erweiterung sollten wir jedoch überlegen, ein Onboarding-Element einzuführen, das das Konzept der "Stil-Bewertung" kurz erklärt.
 ---
