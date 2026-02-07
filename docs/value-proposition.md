@@ -26,7 +26,7 @@ UniNtelligent bietet Studierenden die Möglichkeit, Dozenten anonym nach bestimm
 
 ## Target user
 
-Hauptsächlich Studierende an Hochschulen und Universitäten, primär aber an der HWR
+Hauptsächlich Studierende an Hochschulen und Universitäten, primär aber an der Hochschule für Wirtschaft und Recht Berlin.
 
 ## Customer journey
 
