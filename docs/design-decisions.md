@@ -28,17 +28,23 @@ Updated
 
 ### Problem statement
 
-Problem: Studierende wissen oft nicht, wie ein Dozent oder ein Kurs tatsächlich ist, bevor sie ihn belegen. Manche Kurse sind sehr theorielastig, andere interaktiv; manche Dozenten bevorzugen Hausarbeiten, andere Präsentationen oder Klausuren. Diese Unterschiede beeinflussen stark, wie gut ein Kurs zu den eigenen Lernvorlieben passt – aber solche Informationen sind bisher schwer zugänglich.
-Lösung: „ProfMatch“ bietet Studierenden die Möglichkeit, Dozenten anonym nach bestimmten, klar definierten Kategorien zu bewerten (z. B. Kursstruktur, Interaktivität, Kursstil, Bewertungssystem, Arbeitsaufwand, Fairness). Jeder Dozent erhält ein Profil mit Basisinfos (Name, Fachbereich, angebotene Kurse) und "Bewertungen" zu den jeweiligen Kursen. So können Studierende vor der Kurswahl nachlesen, wie andere den Kurs erlebt haben – und besser entscheiden, welcher Kurs oder Dozent zu ihnen passt.
-Zielgruppe:Hauptsächlich Studierende an Hochschulen und Universitäten, primär aber an der HWR
+Für das Projekt "ProfMatch" mussten wir eine technische Basis wählen, die sowohl die Anforderungen des Kurses erfüllt als auch eine faire, objektive Informationsgrundlage für Studierende schafft. Das Hauptproblem bei bestehenden Lösungen ist oft die Subjektivität: Studierende bewerten Dozenten schlecht, nur weil eine Prüfung schwer war. Unser Ziel war es, ein System zu schaffen, das Eigenschaften (Stil) statt Noten (Leistung) in den Vordergrund stellt und technisch simpel bleibt
 
 ### Decision
 
-[Describe **which** design decision was taken for **what reason** and by **whom**.]
+Wir haben uns für einen monolithischen Flask-Stack mit SQLite und Custom CSS entschieden. Die Entscheidung basiert auf folgenden Faktoren:
+
+Vorgabe & Fokus: Flask und Jinja2 waren Kursvorgaben. Wir haben uns entschieden, die Komplexität niedrig zu halten, um uns auf die Logik des Matching-Algorithmus zu konzentrieren.
+
+Datenhaltung: Wir nutzen Plain SQL statt SQLAlchemy. Da unsere Datenstruktur stabil ist und nur wenige Schreibzugriffe durch User erfolgen. 
+
+Neutralität: Das System wurde gezielt so entworfen, dass es kein klassisches Sterne-Rating gibt. Wir nutzen vordefinierte Kategorien (z.B. Kursstil, Arbeitsaufwand), um eine objektive Einschätzung statt einer emotionalen Bewertung zu ermöglichen.
 
 ### Regarded options
 
-[Describe any possible design decision that will solve the problem. Assess these options, e.g., via a simple pro/con list.]
+Option 1: Database Access - Plain SQL vs. SQLAlchemy | Criterion | Plain SQL (Chosen) | SQLAlchemy | | --- | --- | --- | | Know-how | ✔️ Vorhandene SQL-Kenntnisse konnten direkt genutzt werden | ❌ Hohe Lernkurve für ORM-Konzepte & Syntax | | Complexity | ✔️ Schlankes System ohne zusätzlichen Abstraktionslayer | ❌ Overkill für ein Projekt mit stabilen Datenstrukturen | | Change DB schema | ❌ SQL über den Code verteilt; manuelle Updates nötig | ❔ Gut: Klassen-Struktur, bad: braucht Alembic |
+
+Option 2: Styling - Custom CSS vs. Bootstrap | Criterion | Custom CSS (Chosen) | CSS Frameworks | | --- | --- | --- | | Control | ✔️ Volle Freiheit über das Branding und Layout | ❌ Eingeschränkt durch Standard-Komponenten | | Performance | ✔️ Minimaler Code; kein Laden ungenutzter Klassen | ❌ Große Libraries verursachen unnötigen Overhead |
 
 ---
 
