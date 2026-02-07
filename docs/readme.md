@@ -1,8 +1,10 @@
+Main.2.0 Is the final release
 READ ME-
 Welcome to our repository: UniNtelligent
 Our goal is to make university course selecton a great experience :)
 
 You will find all associated documentation under /docs
+Hosted Website: https://moritzseeger.github.io/Web-App---UniNtelligent---MoritzSeeger_JoanSchagon/
 
 
 ------
