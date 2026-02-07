@@ -31,7 +31,7 @@ def get_professors_df():
     FROM professors
     """
 
-    prof_df = pd.read_sql_query(query, db_con) #Help from ChatGPT
+    prof_df = pd.read_sql_query(query, db_con) 
     return prof_df
 
 

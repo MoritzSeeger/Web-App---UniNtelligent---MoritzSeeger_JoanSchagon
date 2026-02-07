@@ -1,40 +1,173 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html> <!-- [4] Used ChatGPT to impliment our css style -->
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Professor Matches</title>
-</head>
-<body>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Top Professor Matches</title>
 
+  <style>
+    /* =========================================
+       1. BASIS & VARIABLEN
+       ========================================= */
+    :root {
+      --hwr-red: #E2001A;
+      --hwr-dark: #333333;
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: var(--hwr-dark);
+      background: white;
+    }
+
+    /* =========================================
+       2. SEITENLAYOUT
+       ========================================= */
+    .page-container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: 6px 0;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #555;
+      line-height: 1.35;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #777;
+    }
+
+    /* =========================================
+       3. TABLE STYLES
+       ========================================= */
+    .table-wrap {
+      margin-top: 25px;
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+      border: 1px solid #e6e6e6;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      padding: 14px;
+      text-align: left;
+      background: var(--hwr-red);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    tbody td {
+      padding: 14px;
+      border-top: 1px solid #eee;
+      font-size: 0.95rem;
+      vertical-align: middle;
+    }
+
+    tbody tr:hover {
+      background: #fafafa;
+    }
+
+    .name-cell {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* =========================================
+       4. MATCH SCORE PILL
+       ========================================= */
+    .score-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      min-width: 64px;
+      border-radius: 999px;
+      background: rgba(226, 0, 26, 0.1);
+      color: var(--hwr-red);
+      font-weight: 800;
+      border: 1px solid rgba(226, 0, 26, 0.25);
+    }
+
+    /* =========================================
+       5. RESPONSIVE
+       ========================================= */
+    @media (max-width: 900px) {
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      table {
+        min-width: 900px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-container">
     <h1>Top Professor Matches</h1>
+    <h2>Wir haben deine gewählten Atribute mit den Atributen allen Professoren und Lehrkräfte verglichen</h2>
+    <h2>Nach unserer Berechnung sind diese Ergebnisse die best passenden für dich</h2>
+    <h2>Suche gerne in der "DOZENTEN SUCHE" ob hier einer/eine ein Fach von dir lehrt 📖</h2>
 
     {% if matches %}
-        <table border="1" cellpadding="6">
+      <div class="table-wrap">
+        <table>
+          <thead>
             <tr>
-                <th>Name</th>
-                <th>Teaching Style</th>
-                <th>Self Study</th>
-                <th>Character</th>
-                <th>Digital</th>
-                <th>AI Usage</th>
-                <th>Match Score</th>
+              <th>Name</th>
+              <th>Teaching Style</th>
+              <th>Self Study</th>
+              <th>Character</th>
+              <th>Digital</th>
+              <th>AI Usage</th>
+              <th>Match Score</th>
             </tr>
-
+          </thead>
+          <tbody>
             {% for prof in matches %}
             <tr>
-                <td>{{ prof.name }} {{ prof.surname }}</td>
-                <td>{{ prof.teaching_style }}</td>
-                <td>{{ prof.self_study }}</td>
-                <td>{{ prof.character_style }}</td>
-                <td>{{ prof.digital }}</td>
-                <td>{{ prof.ai_usage }}</td>
-                <td><strong>{{ prof.match_score }}</strong></td>
+              <td class="name-cell">{{ prof.name }} {{ prof.surname }}</td>
+              <td>{{ prof.teaching_style }}</td>
+              <td>{{ prof.self_study }}</td>
+              <td>{{ prof.character_style }}</td>
+              <td>{{ prof.digital }}</td>
+              <td>{{ prof.ai_usage }}</td>
+              <td><span class="score-pill">{{ prof.match_score }}</span></td>
             </tr>
             {% endfor %}
+          </tbody>
         </table>
+      </div>
     {% else %}
-        <p>No matches found.</p>
+      <p class="empty-state">No matches found.</p>
     {% endif %}
-
+  </div>
 </body>
 </html>

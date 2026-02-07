@@ -22,22 +22,16 @@
     <li><a href="{{ url_for('kurs_uebersicht') }}">Kurse</a></li>
     <li><a href="{{ url_for('dozenten_suche') }}">Dozenten</a></li>
 
-    {% if g.user %}
-        <li>
-            <span style="color: white; font-weight: bold; margin-right: 10px;">
-                👤 {{ g.user['username'] }}
-            </span>
-        </li>
-        <li>
-            <a href="{{ url_for('logout') }}" class="btn-nav" style="background: transparent; border-color: white; color: white !important;">
-                Logout
-            </a>
-        </li>
-    {% else %}
-        <li>
-            <a href="{{ url_for('login') }}" class="btn-nav">Login</a>
-        </li>
-    {% endif %}
+    {% if "user_id" in session %}
+    <li>
+        <a href="{{ url_for('logout') }}" class="btn-nav">Logout</a>
+    </li>
+{% else %}
+    <li>
+        <a href="{{ url_for('login') }}" class="btn-nav">Login</a>
+    </li>
+{% endif %}
+
 </ul>
             </nav>
         </div>

@@ -1,6 +1,6 @@
 import os
 from functools import wraps
-from flask import Flask, render_template, redirect, url_for, session, request, flash
+from flask import Flask, render_template, redirect, url_for, session, request, flash, g
 import db
 from match_logic import compute_matching_scores, get_professors_df, get_user_df
 
@@ -21,12 +21,14 @@ app.teardown_appcontext(db.close_db_con)
 def index():
     return render_template('index.html')
 
-@app.route("/matches")
+@app.route("/matches") #[3] - ChatGPT: Used to fix broken session ID logic
 def matches():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
     user_id = session["user_id"]
+    
 
     user_df = get_user_df(user_id)
-    print("DEBUG user_df:", user_df.shape)
 
     user = user_df.iloc[0]
 
@@ -66,31 +68,67 @@ def login():
     return render_template('login.html', error=error)
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST']) # [1] ChatGPT - Sliders without JavaScript
 def register():
     error = None
 
+    def clamp_int(v, lo=1, hi=10, default=1):
+        try:
+            n = int(v)
+        except (TypeError, ValueError):
+            return default
+        return max(lo, min(hi, n))
+
+    # Defaults for GET (and also used if POST is missing anything)
+    slider_defaults = {
+        "teaching_style": 1,
+        "self_study": 1,
+        "character_style": 1,
+        "digital": 1,
+        "ai_usage": 1,
+    }
+
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        teaching_style = int(request.form["teaching_style"]) 
-        self_study     = int(request.form["self_study"])
-        character_style= int(request.form["character_style"])
-        digital        = int(request.form["digital"])
-        ai_usage       = int(request.form["ai_usage"])
+        username = request.form.get('username', '').strip()
+        password = request.form.get('password', '')
 
-        existing_user = db.get_user_by_username(username)
-        if existing_user is not None:
-            error = "Benutzername existiert bereits."
+        # Read + clamp slider values (prevents crashes + enforces 1..10)
+        teaching_style  = clamp_int(request.form.get("teaching_style"), default=slider_defaults["teaching_style"])
+        self_study      = clamp_int(request.form.get("self_study"), default=slider_defaults["self_study"])
+        character_style = clamp_int(request.form.get("character_style"), default=slider_defaults["character_style"])
+        digital         = clamp_int(request.form.get("digital"), default=slider_defaults["digital"])
+        ai_usage        = clamp_int(request.form.get("ai_usage"), default=slider_defaults["ai_usage"])
+
+        # Minimal validation
+        if not username or not password:
+            error = "Bitte Benutzername und Passwort ausfüllen."
         else:
-            db.insert_user(username, password, teaching_style, self_study, character_style, digital, ai_usage)
+            existing_user = db.get_user_by_username(username)
+            if existing_user is not None:
+                error = "Benutzername existiert bereits."
+            else:
+                db.insert_user(username, password, teaching_style, self_study, character_style, digital, ai_usage)
 
-            user = db.get_user(username, password)
-            session['user_id'] = user['id']
-            flash("Registrierung erfolgreich! Du bist nun eingeloggt.")
-            return redirect(url_for('index'))
+                user = db.get_user(username, password)
+                session['user_id'] = user['id']
+                flash("Registrierung erfolgreich! Du bist nun eingeloggt.")
+                return redirect(url_for('index'))
 
-    return render_template('register.html', error=error)
+        # If we reached here, there was an error: re-render with the chosen values
+        return render_template(
+            'register.html',
+            error=error,
+            username=username,
+            teaching_style=teaching_style,
+            self_study=self_study,
+            character_style=character_style,
+            digital=digital,
+            ai_usage=ai_usage,
+        )
+
+    # GET request
+    return render_template('register.html', error=error, **slider_defaults)
+
 
 
 @app.route('/logout')
@@ -223,4 +261,5 @@ def debug_db():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 

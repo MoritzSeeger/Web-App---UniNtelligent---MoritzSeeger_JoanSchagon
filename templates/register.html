@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>        <!-- [1] ChatGPT - Used AI to help create Sliders (without JS) -->
 <html lang="de">
 <head>
     <meta charset="UTF-8" />
@@ -17,7 +17,8 @@
         <form method="post">
             <div class="input-group">
                 <label>Username</label>
-                <input type="text" name="username" placeholder="Wähle deinen Benutzernamen" required />
+                <input type="text" name="username" placeholder="Wähle deinen Benutzernamen" required
+                    value="{{ username|default('') }}" />
             </div>
 
             <div class="input-group">
@@ -27,52 +28,41 @@
 
             <h1>Wählen Sie ihren bevorzugten Learn-Attribute aus</h1>
 
+            {# Defaults if the route doesn't pass anything in #}
+            {% set ts = teaching_style|default(1) %}
+            {% set ss = self_study|default(1) %}
+            {% set cs = character_style|default(1) %}
+            {% set dg = digital|default(1) %}
+            {% set ai = ai_usage|default(1) %}
+
             <div class="slider-container">
-                
+
                 <div class="slider-row">
-                    <h3> Lehrstil: 1 = Frontal 10 = Interaktiv </h3>
-                <input type="range" id="slider1" name="teaching_style" min="1" max="10" step="1" value="1">
-                <span class="slider-value" id="value1">1</span>
+                    <h3> Lehrstil: Leer = Frontal, Voll = Interaktiv </h3>
+                    <input type="range" id="slider1" name="teaching_style" min="1" max="10" step="1" value="{{ ts }}">
                 </div>
 
                 <div class="slider-row">
-                    <h3> Selbst-Studium: 1 = Voll Präsenz 10 = Voll Asynchron </h3>
-                <input type="range" id="slider2" name="self_study" min="1" max="10" step="1" value="1">
-                <span class="slider-value" id="value2">1</span>
+                    <h3> Selbst-Studium: Leer = Nur Präsenz, Voll = Voll Asynchron </h3>
+                    <input type="range" id="slider2" name="self_study" min="1" max="10" step="1" value="{{ ss }}">
                 </div>
 
                 <div class="slider-row">
-                    <h3> Charakter: 1 = Ultra Seriös 10 = Witzbold </h3>
-                <input type="range" id="slider3" name="character_style" min="1" max="10" step="1" value="1">
-                <span class="slider-value" id="value3">1</span>
+                    <h3> Charakter: Leer = Ultra Seriös, Voll = Witzbold </h3>
+                    <input type="range" id="slider3" name="character_style" min="1" max="10" step="1" value="{{ cs }}">
                 </div>
 
                 <div class="slider-row">
-                    <h3> Digital: 1 = Kreide & Papier 10 = Laptop ist notwendig </h3>
-                <input type="range" id="slider4" name="digital" min="1" max="10" step="1" value="1">
-                <span class="slider-value" id="value4">1</span>
+                    <h3> Digital: Leer = Kreide & Papier, Voll = Laptop ist notwendig </h3>
+                    <input type="range" id="slider4" name="digital" min="1" max="10" step="1" value="{{ dg }}">
                 </div>
 
                 <div class="slider-row">
-                    <h3> KI: 1 = Total Verboten 10 = Ohne KI kein bestehen </h3>
-                <input type="range" id="slider5" name="ai_usage" min="1" max="10" step="1" value="1">
-                <span class="slider-value" id="value5">1</span>
+                    <h3> KI: Leer = Total Verboten, Voll = Ohne KI kein bestehen </h3>
+                    <input type="range" id="slider5" name="ai_usage" min="1" max="10" step="1" value="{{ ai }}">
                 </div>
+
             </div>
-            <h3>  </h3>
-            <script>
-
-        for (let i = 1; i <= 5; i++) {                                  //Coded by ChatGPT [1]
-        const slider = document.getElementById(`slider${i}`);
-        const valueDisplay = document.getElementById(`value${i}`);
-
-        slider.addEventListener("input", () => {
-            valueDisplay.textContent = slider.value;
-        });
-        }
-    </script>
-
-
 
             <button class="login-btn" type="submit">REGISTRIEREN</button>
         </form>
