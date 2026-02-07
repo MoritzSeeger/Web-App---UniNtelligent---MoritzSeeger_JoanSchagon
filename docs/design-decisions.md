@@ -42,9 +42,16 @@ Neutralität: Das System wurde gezielt so entworfen, dass es kein klassisches St
 
 ### Regarded options
 
-Option 1: Database Access - Plain SQL vs. SQLAlchemy | Criterion | Plain SQL (Chosen) | SQLAlchemy | | --- | --- | --- | | Know-how | ✔️ Vorhandene SQL-Kenntnisse konnten direkt genutzt werden | ❌ Hohe Lernkurve für ORM-Konzepte & Syntax | | Complexity | ✔️ Schlankes System ohne zusätzlichen Abstraktionslayer | ❌ Overkill für ein Projekt mit stabilen Datenstrukturen | | Change DB schema | ❌ SQL über den Code verteilt; manuelle Updates nötig | ❔ Gut: Klassen-Struktur, bad: braucht Alembic |
+| Option 1: Database | Criterion | Plain SQL (Chosen) | SQLAlchemy |
+| --- | --- | --- | --- |
+| | **Know-how** | ✔️ SQL-Kenntnisse vorhanden | ❌ ORM muss gelernt werden |
+| | **Complexity** | ✔️ Schlankes System | ❌ Zu hoher Overhead |
+| | **Schema** | ❌ Manuelle Updates nötig | ❔ Gut: Klassen-Struktur |
 
-Option 2: Styling - Custom CSS vs. Bootstrap | Criterion | Custom CSS (Chosen) | CSS Frameworks | | --- | --- | --- | | Control | ✔️ Volle Freiheit über das Branding und Layout | ❌ Eingeschränkt durch Standard-Komponenten | | Performance | ✔️ Minimaler Code; kein Laden ungenutzter Klassen | ❌ Große Libraries verursachen unnötigen Overhead |
+| Option 2: Styling | Criterion | Custom CSS (Chosen) | CSS Frameworks |
+| --- | --- | --- | --- |
+| | **Control** | ✔️ Volle Design-Freiheit | ❌ Standard-Komponenten |
+| | **Performance** | ✔️ Kein unnötiger Code | ❌ Große Library-Files |
 
 ---
 
