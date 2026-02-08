@@ -5,7 +5,6 @@ nav_order: 4
 ---
 
 {: .label }
-[Jane Dane]
 
 {: .no_toc }
 # Summary of individual contributions
@@ -17,16 +16,22 @@ nav_order: 4
 {: toc }
 </details>
 
-## [Jane Dane]
+## [Moritz Seeger]
 
 Contributions
-: Lorem ipsum dolor
-: Consetetur sadipscing elitr
-: ...
+Core Application: Entwicklung der zentralen Anwendungslogik in der app.py.
 
-## [Joe Doe]
+Datenbank-Implementierung: Aufbau und Verwaltung der SQLite-Datenbank sowie das Schreiben der SQL-Queries.
+
+Fullstack-Entwicklung: Gestaltung und Strukturierung des Frontends mittels HTML, CSS und der Jinja2 Template-Engine.
+
+System-Health: Implementierung von Debug-Routinen zur Überwachung der Datenbank-Integrität.
+
+## [Joan Tjark Schagon]
 
 Contributions
-: Diam nonumy eirmod
-: Tempor invidunt ut labore
-: ...
+Datenbank-Infrastruktur: Entwicklung der db.py für das Handling der Datenbankverbindung und Initialisierung.
+
+Algorithmus-Design: Konzeption und Implementierung der Kern-Logik in der match_logic.py zur Auswertung der Dozenten-Eigenschaften.
+
+Frontend-Gestaltung: Mitwirkung am Design und der Benutzeroberfläche unter Verwendung von HTML und CSS.
