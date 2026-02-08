@@ -130,6 +130,18 @@ Browser shows: `📂 Datenbank-Pfad ist: ... ✅ Datei existiert. ⚖️ Dateigr
 
 ## Database Management (db.py)
 
+### `get_db_con(pragma_foreign_keys=True)`
+
+**Route:** `N/A (Interne Funktion)`
+
+**Methods:** /
+
+**Purpose:** Stellt eine Verbindung zur SQLite-Datenbank her, konfiguriert das row_factory für den Zugriff auf Spalten über Namen und aktiviert standardmäßig Foreign Key Constraints.
+
+**Sample output:**
+
+/
+
 ### `init_db()`
 
 **Route:** `/insert/sample`
@@ -141,22 +153,59 @@ Browser shows: `📂 Datenbank-Pfad ist: ... ✅ Datei existiert. ⚖️ Dateigr
 **Sample output:**
 
 ✅ Erfolg! Datenbank wurde befüllt.
----
 
-## Matching & Discovery
+### `insert_sample()`
 
-### `matches()`
+**Route:** `N/A (Wird von /insert/sample aufgerufen)`
 
-**Route:** `/matches`
+**Methods:** /
 
-**Methods:** `GET`
-
-**Purpose:** Berechnet basierend auf den im Profil hinterlegten Werten des Nutzers ein Ranking aller Dozenten unter Verwendung der match_logic.py (Ranking nach eigenen Präfferenzen, welcher DOzent Stiltechnisch am besten zum eigenen Stil passt).
+**Purpose:** Liest das SQL-Skript insert_sample.sql ein und befüllt die Datenbank mit Testdatensätzen.
 
 **Sample output:**
 
-Rendert das Template matches.html mit einer sortierten Liste der passendsten Dozenten.
+/
 
+### `get_user(username, password)`
+
+**Route:** `/`
+
+**Methods:** /
+
+**Purpose:** Sucht in der Datenbank nach einem Benutzer mit der exakten Kombination aus Benutzername und Passwort.
+
+**Sample output:**
+
+Gibt ein sqlite3.Row-Objekt des Benutzers zurück oder None, wenn keine Übereinstimmung gefunden wurde.
+
+### `get_user_by_username(username)`
+
+**Route:** `/`
+
+**Methods:** /
+
+**Purpose:** Prüft, ob ein spezifischer Benutzername bereits in der users-Tabelle existiert.
+
+**Sample output:**
+
+Gibt die Benutzerdaten zurück, falls der Name bereits vergeben ist.
+
+### `insert_user(username, password, teaching_style, self_study, character_style, digital, ai_usage)`
+
+**Route:** `wird von /register gefunden`
+
+**Methods:** /
+
+**Purpose:** Fügt einen neuen Studenten in die Datenbank ein, wobei die individuellen Präferenzen für den Matching-Algorithmus sowie die Standardrolle 'Student' gespeichert
+
+**Sample output:**
+
+/
+
+
+---
+
+## Matching & Discovery
 
 ### `matches()`
 
