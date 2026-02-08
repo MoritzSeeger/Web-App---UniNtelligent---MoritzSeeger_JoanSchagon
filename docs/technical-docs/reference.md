@@ -224,3 +224,9 @@ Rendert das Template matches.html mit einer sortierten Liste der passendsten Doz
 
 
 ---
+
+
+## Quellen
+Quellen mit Links: [Quellen_nur_links - WebApp.pdf](https://github.com/user-attachments/files/25163272/Quellen_nur_links.-.WebApp.pdf)
+Quellen als PDF mit gesamten Chatverlauf: [Quellen_gesamter_Verlauf - WebApp.pdf](https://github.com/user-attachments/files/25163275/Quellen_gesamter_Verlauf.-.WebApp.pdf)
+
