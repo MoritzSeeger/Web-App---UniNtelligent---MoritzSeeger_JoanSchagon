@@ -9,6 +9,7 @@ Hosted Website: https://moritzseeger.github.io/Web-App---UniNtelligent---MoritzS
 
 ------
 App Instructions:
+
 1.) Clone Branch MAIN.2.0
 
 2.) In your environment terminal run "flask innit-db"
