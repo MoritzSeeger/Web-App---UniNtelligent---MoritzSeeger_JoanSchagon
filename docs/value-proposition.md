@@ -29,5 +29,8 @@ UniNtelligent bietet Studierenden die Möglichkeit, Dozenten anonym nach bestimm
 Hauptsächlich Studierende an Hochschulen und Universitäten, primär aber an der Hochschule für Wirtschaft und Recht Berlin.
 
 ## Customer journey
+Unsere "Customer Journey" fokusiert sich auf "Simplicity and Repeatability". Wir möchten das der Kunde mit nur wenigen Clicks auf unserer App startklar ist.
 
-[Illustrate the customer journey, from the app's entry point to a completed task. You might want to show the customer journey as (schematic) screen flows.]
+Der Kunde (Studenten) kann einfach parallel zu seiner Kurswahl-App (z.B. Sam), unsere App nutzen um fundiertere Entscheidungen bzgl. seiner Kurs und Dozentenwahl treffen
+
+Für unseren "Happy Path" bitte navigieren Sie zu: Architecture--System Flow
