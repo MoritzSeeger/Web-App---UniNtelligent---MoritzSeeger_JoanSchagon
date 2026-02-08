@@ -8,7 +8,17 @@ Hosted Website: https://moritzseeger.github.io/Web-App---UniNtelligent---MoritzS
 
 
 ------
-Problem: Studierende wissen oft nicht, wie ein Dozent oder ein Kurs tatsächlich ist, bevor sie ihn belegen. Manche Kurse sind sehr theorielastig, andere interaktiv; manche Dozenten bevorzugen Hausarbeiten, andere Präsentationen oder Klausuren. Diese Unterschiede beeinflussen stark, wie gut ein Kurs zu den eigenen Lernvorlieben passt – aber solche Informationen sind bisher schwer zugänglich. Lösung: „ProfMatch“ bietet Studierenden die Möglichkeit, Dozenten anonym nach bestimmten, klar definierten Kategorien zu bewerten (z. B. Kursstruktur, Interaktivität, Kursstil, Bewertungssystem, Arbeitsaufwand, Fairness). Jeder Dozent erhält ein Profil mit Basisinfos (Name, Fachbereich, angebotene Kurse) und "Bewertungen" zu den jeweiligen Kursen. So können Studierende vor der Kurswahl nachlesen, wie andere den Kurs erlebt haben – und besser entscheiden, welcher Kurs oder Dozent zu ihnen passt. Zielgruppe:Hauptsächlich Studierende an Hochschulen und Universitäten, primär aber an der HWR
+App Instructions:
+1.) Clone Branch MAIN.2.0
+2.) In your environment terminal run "flask innit-db"
+2.) In your environment terminal run "flask run" OR start app.py
+3.) Open the development server in your web browser
+4.) In your url-search bar enter: YOUR-SERVER_ADRESS/insert/sample - This should redirect you too the message: "✅ Erfolg! Datenbank wurde befüllt."
+5.) Go back to the homepage - The app is now fully functioning
+6.) Create an account
+7.) Pick your traits
+8.) Explore the features 
+
 ------
 
 12/12 JS - Professor/User/Kurse/Bachelor Modelle erstellt + Klassen für diese + Matching Klasse & DB Workflow gestartet.
