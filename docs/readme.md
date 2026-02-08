@@ -29,8 +29,3 @@ App Instructions:
 8.) Explore the features 
 
 ------
-
-12/12 JS - Professor/User/Kurse/Bachelor Modelle erstellt + Klassen für diese + Matching Klasse & DB Workflow gestartet.
-17/12 JS - Created prliminary final Models in SQAlchemy format: Professor/User/User_Attributes/Course/Degree/degreeCourses
-  and SQLite: Created database for the data model
-18/12 JS - Fixed bugs in models.py
