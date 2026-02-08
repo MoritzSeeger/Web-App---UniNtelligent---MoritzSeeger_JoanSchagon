@@ -223,3 +223,12 @@ Rendert das Template matches.html mit einer sortierten Liste der passendsten Doz
 Quellen mit Links: [Quellen_nur_links - WebApp.pdf](https://github.com/user-attachments/files/25163272/Quellen_nur_links.-.WebApp.pdf)
 Quellen als PDF mit gesamten Chatverlauf: [Quellen_gesamter_Verlauf - WebApp.pdf](https://github.com/user-attachments/files/25163275/Quellen_gesamter_Verlauf.-.WebApp.pdf)
 
+| Thema | Link zur Quelle |
+| :--- | :--- |
+| **Python & VS Code** | [hwrberlin.github.io/fswd/python-vscode.html](https://hwrberlin.github.io/fswd/python-vscode.html) |
+| **Git Grundlagen** | [hwrberlin.github.io/fswd/git.html](https://hwrberlin.github.io/fswd/git.html) |
+| **FSWD Einführung** | [hwrberlin.github.io/fswd/fswd-intro.html](https://hwrberlin.github.io/fswd/fswd-intro.html) |
+| **Flask Framework** | [hwrberlin.github.io/fswd/flask.html](https://hwrberlin.github.io/fswd/flask.html) |
+| **HTML & CSS** | [hwrberlin.github.io/fswd/html-css.html](https://hwrberlin.github.io/fswd/html-css.html) |
+| **Design Decisions** | [hwrberlin.github.io/fswd/design-decisions.html](https://hwrberlin.github.io/fswd/design-decisions.html) |
+
