@@ -29,7 +29,7 @@ Das Ziel dieser Evaluation war es zu prüfen, wie effizient Studierende einen sp
 
 ### Method
 Wir haben einen Usability-Test mit Kommilitonen der HWR Berlin durchgeführt. Den Testern wurde ein Laptop mit der laufenden Anwendung übergeben. 
-**Aufgabe:** "Du musst im nächsten Semester Statistik belegen. Nutze ProfMatch, um die verfügbaren Dozenten für diesen Kurs zu finden und entscheide dich basierend auf deinem Lernstil für einen der Dozenten."
+**Aufgabe:** "Du musst im nächsten Semester Statistik belegen. Nutze UniNtelligent, um die verfügbaren Dozenten für diesen Kurs zu finden und entscheide dich basierend auf deinem Lernstil für einen der Dozenten."
 Während des Prozesses haben wir beobachtet, wie intuitiv die Navigation durch die Fachbereiche und Kurse wahrgenommen wurde.
 
 ### Results
