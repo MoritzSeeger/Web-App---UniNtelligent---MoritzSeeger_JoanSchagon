@@ -16,19 +16,13 @@ Project
 
 ### Moritz Seeger
 
-About
-: 
-
 Matr.-Nr.
 : 77209191407
 
 ### Joan Tjark Schagon
 
-About
-: Some info about Joe
-
 Matr.-Nr.
-: 1234567
+: 77203286298 
 
 ## Eidesstattliche Erklärung
 
