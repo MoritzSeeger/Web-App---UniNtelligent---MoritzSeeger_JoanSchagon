@@ -12,13 +12,13 @@ App Instructions:
 
 1.) Clone Branch MAIN.2.0
 
-2.) In your environment terminal run "flask innit-db"
+2.) In your environment terminal run "flask init-db"
 
 2.) In your environment terminal run "flask run" OR start app.py
 
 3.) Open the development server in your web browser
 
-4.) In your url-search bar enter: YOUR-SERVER_ADRESS/insert/sample - This should redirect you too the message: "✅ Erfolg! Datenbank wurde befüllt."
+4.) In your url-search bar enter: [YOUR-SERVER_ADRESS]/insert/sample - This should redirect you too the message: "✅ Erfolg! Datenbank wurde befüllt."
 
 5.) Go back to the homepage - The app is now fully functioning
 
