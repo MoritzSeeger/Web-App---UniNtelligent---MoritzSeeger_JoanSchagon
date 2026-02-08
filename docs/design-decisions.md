@@ -21,7 +21,7 @@ nav_order: 3
 ### Meta
 
 Status
-: **Work in progress** - Decided - Obsolete
+: **Decided
 
 Updated
 : 19.12.2025
